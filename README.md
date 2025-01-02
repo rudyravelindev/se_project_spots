@@ -19,11 +19,13 @@ This project is a social media paltform to share your iamges with the wolrd and 
 
 ### Final project
 
-- Large screen
-  ![getting Started](./images/large-view.png)
-  ![getting Started](./images/mobile-view.png)
-- Mobile view
-  ![getting Started](./images/mobile-view.png)
+#### Large screen
+
+![getting Started](./images/large-view.png)
+
+### Mobile view
+
+![getting Started](./images/mobile-view.png)
 
 ### Deployment
 
