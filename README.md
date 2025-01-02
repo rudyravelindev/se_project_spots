@@ -23,7 +23,7 @@ This project is a social media paltform to share your iamges with the wolrd and 
 
 ![getting Started](./images/large-view.png)
 
-### Mobile view
+#### Mobile view
 
 ![getting Started](./images/mobile-view.png)
 
