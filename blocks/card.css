@@ -1,9 +1,9 @@
-.card {
+/* .card {
   max-width: 413px;
-}
+} */
 .card__image {
   height: 413px;
-  width: 413px;
+  width: 100%; /*it was 413px*/
   object-fit: cover;
   display: block;
   border-radius: 8px;
@@ -15,6 +15,13 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-clamp: 3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 353px;
 }
 
 .card__content {
@@ -33,4 +40,14 @@
   border: none;
   background-color: transparent;
   opacity: 0.4;
+}
+
+@media screen and (max-width: 627px) {
+  .card__image {
+    height: 288px;
+  }
+
+  /* .card__title {
+    max-width: 95px;
+  } */
 }
