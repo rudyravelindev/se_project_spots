@@ -1,10 +1,11 @@
 .footer {
   text-align: center;
-  width: 104px;
-  height: 16px;
-  left: 668px;
-  right: 668px;
   max-width: 120px;
+  height: 16px;
   margin: 0 auto;
   padding: 60px 40px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
 }
