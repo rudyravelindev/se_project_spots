@@ -13,11 +13,11 @@ This project is a social media paltform to share your iamges with the wolrd and 
 - GIT for version control
 - GITHUB PAGES for hosting
 
-### Figma
+## Figma
 
 - [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
 
-### Final project
+## Final project
 
 #### Large screen
 
@@ -27,7 +27,7 @@ This project is a social media paltform to share your iamges with the wolrd and 
 
 ![getting Started](./images/mobile-view.png)
 
-### Deployment
+## Deployment
 
 This webpage site is deployed to Github Pages
 
