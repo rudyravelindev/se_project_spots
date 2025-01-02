@@ -21,6 +21,7 @@ This project is a social media paltform to share your iamges with the wolrd and 
 
 - Large screen
   ![getting Started](./images/large-view.png)
+  ![getting Started](./images/mobile-view.png)
 - Mobile view
   ![getting Started](./images/mobile-view.png)
 
