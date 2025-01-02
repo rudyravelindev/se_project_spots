@@ -23,7 +23,7 @@
   line-height: 32px;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
+  /* line-clamp: 3; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -37,7 +37,7 @@
   line-height: 16px;
   text-overflow: ellipsis;
   overflow: hidden;
-  line-clamp: 3;
+  /* line-clamp: 3; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
