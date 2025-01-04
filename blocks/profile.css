@@ -27,6 +27,9 @@
   overflow: hidden;
   -webkit-box-orient: vertical;
   max-width: 420px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .profile__description {
@@ -39,6 +42,9 @@
   overflow: hidden;
   -webkit-box-orient: vertical;
   max-width: 420px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .profile__edit-btn {
