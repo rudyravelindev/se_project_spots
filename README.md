@@ -32,3 +32,7 @@ This project is a social media paltform to share your iamges with the wolrd and 
 This webpage site is deployed to Github Pages
 
 Click here to see the project live: [Spots](https://rudyravelindev.github.io/se_project_spots/)
+
+## Video
+
+- Click here to see my presentation video about the project.
