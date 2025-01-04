@@ -36,3 +36,5 @@ Click here to see the project live: [Spots](https://rudyravelindev.github.io/se_
 ## Video
 
 - Click here to see my presentation video about the project.
+
+![Video_Link](https://drive.google.com/file/d/1BtQdWITDGkTGENSUgWRvEZanAkJeVoeY/view?usp=drive_link)
