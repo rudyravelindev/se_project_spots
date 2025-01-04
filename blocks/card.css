@@ -1,6 +1,6 @@
 .card__image {
   height: 413px;
-  width: 100%; /*it was 413px*/
+  width: 100%;
   object-fit: cover;
   display: block;
   border-radius: 8px;

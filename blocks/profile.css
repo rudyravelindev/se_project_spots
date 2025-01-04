@@ -102,7 +102,8 @@
     text-align: center;
     margin: 0 auto;
   }
-  profile__name {
+
+  .profile__name {
     font-size: 20px;
     margin: 0 0 6px;
     max-width: 288px;
