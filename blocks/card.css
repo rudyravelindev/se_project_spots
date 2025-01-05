@@ -49,6 +49,12 @@
     width: 288px;
     height: 288px;
   }
+
+  .card__like-btn {
+    width: 20px;
+    height: 18px;
+  }
+
   .card__title {
     max-width: 250px;
     font-size: 16px;
