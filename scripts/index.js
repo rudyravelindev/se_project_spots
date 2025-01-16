@@ -24,3 +24,20 @@ const initialCards = [
     link: "https://unsplash.com/fr/photos/une-structure-en-bois-avec-une-lumiere-a-linterieur-6defJnqqIH8",
   },
 ];
+
+const profileEditButton = document.querySelector(".profile__edit-btn");
+
+const editModal = document.querySelector("#edit-modal");
+const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
+
+function openModal() {
+  editModal.classList.add("modal__opened");
+}
+
+function closeModal() {
+  editModal.classList.remove("modal__opened");
+}
+
+profileEditButton.addEventListener("click", openModal);
+
+editModalCloseBtn.addEventListener("click", closeModal);
