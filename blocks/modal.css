@@ -10,7 +10,7 @@
   visibility: hidden;
 }
 
-.modal__opened {
+.modal_opened {
   visibility: visible;
 }
 
@@ -33,6 +33,11 @@
   height: 40px;
   border: none;
   background-color: #fff;
+  cursor: pointer;
+}
+
+.modal__close-btn:hover {
+  background-image: url(../images/close-btn.svg);
 }
 
 .modal__title {
@@ -64,7 +69,13 @@
   line-height: 20px;
   border: 1px solid #212121;
   border-radius: 8px;
+  cursor: pointer;
 }
+
+.modal__input:hover {
+  border: 2px solid #212121;
+}
+
 .modal__submit-btn {
   width: 156px;
   padding: 18px 0;
@@ -75,6 +86,11 @@
   font-size: 16px;
   line-height: 1;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 627px) {
