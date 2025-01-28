@@ -79,6 +79,16 @@ function handleEditFormSubmit(evt) {
   closeModal(editModal);
 }
 
+profileEditButton.addEventListener("click", () => {
+  editModalNameInput.value = profileName.textContent;
+  editModalDescriptionInput.value = profileDescription.textContent;
+  openModal(editModal);
+});
+
+editModalCloseBtn.addEventListener("click", () => {
+  closeModal(editModal);
+});
+
 cardEditButton.addEventListener("click", () => {
   openModal(cardModal);
 });
