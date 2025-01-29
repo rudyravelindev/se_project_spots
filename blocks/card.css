@@ -53,6 +53,37 @@
   background-image: url("../images/hoverheartliked.svg");
 }
 
+/* DELETE BUTTON */
+.card {
+  position: relative;
+}
+
+.card__delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-image: url("../images/delete.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.card__delete-btn_deleted {
+  background-image: url("../images/delete.svg");
+}
+
+.card__delete-btn:hover {
+  background-image: url("../images/deletehover.svg");
+  opacity: 1;
+}
+/* END */
+
 /* Media Query */
 @media screen and (max-width: 627px) {
   .card__image {

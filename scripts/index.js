@@ -39,7 +39,6 @@ const editModalDescriptionInput = editModal.querySelector(
 );
 
 const cardModal = document.querySelector("#add-card-modal");
-// const cardForm = cardModal.querySelector(".modal__form"); II keep this here for Just in case I need it back.
 const cardForm = cardModal.querySelector("#add-card-form");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
@@ -54,19 +53,20 @@ function getCardElement(data) {
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardLikedBtn = cardElement.querySelector(".card__like-btn");
+  const deleteButton = cardElement.querySelector(".card__delete-btn");
 
   // Assign the image src and alt attributes
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
-
   cardNameElement.textContent = data.name;
 
   cardLikedBtn.addEventListener("click", () => {
     cardLikedBtn.classList.toggle("card__like-btn_liked");
   });
-  // TODO - Select the delete button
-  // TODO - Set the listner on the delete button
-  // TODO - the handler should remove the card from the DOM
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   return cardElement;
 }
