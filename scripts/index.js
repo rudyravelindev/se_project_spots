@@ -53,6 +53,7 @@ function getCardElement(data) {
     .cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
+  const cardLikedBtn = cardElement.querySelector(".card__like-btn");
 
   // Assign the image src and alt attributes
   cardImageElement.src = data.link;
@@ -60,7 +61,13 @@ function getCardElement(data) {
 
   cardNameElement.textContent = data.name;
 
-  // Assign values to the img src and alt
+  cardLikedBtn.addEventListener("click", () => {
+    cardLikedBtn.classList.toggle("card__like-btn_liked");
+  });
+  // TODO - Select the delete button
+  // TODO - Set the listner on the delete button
+  // TODO - the handler should remove the card from the DOM
+
   return cardElement;
 }
 
@@ -81,7 +88,6 @@ function handleEditFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  // TO DO make the card appear at the top
   const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValue);
   cardsList.prepend(cardElement);

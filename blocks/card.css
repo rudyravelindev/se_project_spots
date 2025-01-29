@@ -44,6 +44,16 @@
   opacity: 1;
 }
 
+.card__like-btn_liked {
+  background-image: url("../images/heartliked.svg");
+  opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+  background-image: url("../images/hoverheartliked.svg");
+}
+
+/* Media Query */
 @media screen and (max-width: 627px) {
   .card__image {
     width: 288px;
