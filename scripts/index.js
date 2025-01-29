@@ -39,18 +39,19 @@ const editModalDescriptionInput = editModal.querySelector(
 );
 
 const cardModal = document.querySelector("#add-card-modal");
+// const cardForm = cardModal.querySelector(".modal__form"); II keep this here for Just in case I need it back.
+const cardForm = cardModal.querySelector("#add-card-form");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
-
+const cardNameInput = cardModal.querySelector("#add-card-name-input");
+const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  // console.log(data);
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
   const cardNameElement = cardElement.querySelector(".card__title");
-  //To DO Select Img Element
   const cardImageElement = cardElement.querySelector(".card__image");
 
   // Assign the image src and alt attributes
@@ -60,7 +61,6 @@ function getCardElement(data) {
   cardNameElement.textContent = data.name;
 
   // Assign values to the img src and alt
-
   return cardElement;
 }
 
@@ -77,6 +77,15 @@ function handleEditFormSubmit(evt) {
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
   closeModal(editModal);
+}
+
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  // TO DO make the card appear at the top
+  const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
+  const cardElement = getCardElement(inputValue);
+  cardsList.prepend(cardElement);
+  closeModal(cardModal);
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -98,6 +107,7 @@ cardModalCloseBtn.addEventListener("click", () => {
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
