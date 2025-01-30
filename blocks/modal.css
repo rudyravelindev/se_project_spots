@@ -23,7 +23,6 @@
   position: relative;
   border-radius: 8px;
 }
-/* Task 6 & 7 */
 
 .modal__content_type_preview {
   position: relative;
@@ -40,7 +39,6 @@
   border-radius: 8px;
 }
 
-/* End Task 6 & 7 */
 .modal__close-btn {
   position: absolute;
   top: 32px;
@@ -53,7 +51,6 @@
   cursor: pointer;
 }
 
-/* Task 6 & 7 */
 .modal__close_type_preview {
   position: absolute;
   top: 10px;
@@ -68,7 +65,22 @@
   cursor: pointer;
 }
 
-/* End Task 6 & 7 */
+.modal__caption {
+  max-width: 100%;
+  min-width: fit-content;
+  width: 214px;
+  height: auto;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background-color: #212121;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 1;
+}
 
 .modal__close-btn:hover {
   background-image: url("../images/close-btn.svg");
