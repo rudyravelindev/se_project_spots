@@ -23,12 +23,29 @@
   position: relative;
   border-radius: 8px;
 }
+/* Task 6 & 7 */
 
+.modal__content_type_preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal__image {
+  width: 100%;
+  object-fit: contain;
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+
+/* End Task 6 & 7 */
 .modal__close-btn {
   position: absolute;
   top: 32px;
   right: 50px;
-  background-image: url(../images/close-icon.svg);
+  background-image: url("../images/close-icon.svg");
   width: 40px;
   height: 40px;
   border: none;
@@ -36,8 +53,25 @@
   cursor: pointer;
 }
 
+/* Task 6 & 7 */
+.modal__close_type_preview {
+  position: absolute;
+  top: 10px;
+  right: -22.5px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../images/close-preview-icon.svg");
+  background-size: contain;
+  background-color: transparent;
+  opacity: 1;
+  border: none;
+  cursor: pointer;
+}
+
+/* End Task 6 & 7 */
+
 .modal__close-btn:hover {
-  background-image: url(../images/close-btn.svg);
+  background-image: url("../images/close-btn.svg");
 }
 
 .modal__title {
