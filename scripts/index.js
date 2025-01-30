@@ -1,7 +1,7 @@
 const initialCards = [
   {
     name: "Val Thorens",
-    link: "https://images.unsplash.com/photo-1519659675643-e5885721661f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "https://images.unsplash.com/photo-1576090639477-77983b72de6f?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Restaurant terrace",
