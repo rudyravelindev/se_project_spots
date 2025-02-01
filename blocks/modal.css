@@ -168,7 +168,7 @@
   }
 
   .modal__close-btn {
-    top: -22px;
+    top: 12px;
     right: 12px;
   }
 
@@ -180,29 +180,17 @@
   }
 }
 
-@media screen and (max-width: 627px) {
-  .modal {
-    padding: 0 10px;
+@media screen and (max-width: 320px) {
+  .modal__image {
+    width: 288px;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
   }
-
-  .modal__container {
-    padding: 12px;
-  }
-
-  .modal__title {
-    font-size: 20px;
-    margin: 10px 0 34px;
-  }
-
-  .modal__close-btn {
-    top: -22px;
-    right: 12px;
-  }
-
-  .modal__label {
-    margin-bottom: 24px;
-  }
-  .modal__submit-btn {
-    width: 100%;
+  .modal__close-btn_type_preview {
+    top: -15px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
   }
 }
