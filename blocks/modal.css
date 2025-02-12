@@ -158,8 +158,14 @@
   cursor: pointer;
 }
 
-.modal__submit-btn-invalid {
-  opacity: 50%;
+/* .modal__submit-btn-invalid {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+} */
+
+.modal__submit-btn-invalid:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
