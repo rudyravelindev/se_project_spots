@@ -114,7 +114,7 @@ function handleAddCardSubmit(evt) {
 
   cardForm.reset();
   // toggleButtonState();
-  disableButton(cardSubmitBtn);
+  disableButton(cardSubmitBtn, settings);
   //end
   closeModal(cardModal);
 }
