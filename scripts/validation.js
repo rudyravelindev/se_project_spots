@@ -1,4 +1,3 @@
-// final parent
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -7,8 +6,6 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-// end
 
 const showInputError = (formEl, inputEl, errorMsg, config) => {
   const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -31,7 +28,6 @@ const checkInputValidity = (formEl, inputEl, config) => {
   }
 };
 
-// Toggle
 const hasInvalidInput = (inputList) => {
   return inputList.some((input) => {
     return !input.validity.valid;
