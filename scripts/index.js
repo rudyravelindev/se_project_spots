@@ -39,13 +39,15 @@ const editModalDescriptionInput = editModal.querySelector(
 );
 
 const cardModal = document.querySelector("#add-card-modal");
-const cardForm = cardModal.querySelector("#add-card-form");
+//  need to remove
+// const cardForm = cardModal.querySelector("#add-card-form");
+const cardForm = document.forms["add-card-form"];
 
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 // reset
-const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn-invalid");
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn_invalid");
 // end
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -136,9 +138,24 @@ function handleAddCardSubmit(evt) {
   closeModal(cardModal);
 }
 
+function resetValidation(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(".modal__input"));
+  const errorList = Array.from(formElement.querySelectorAll(".modal__error"));
+
+  inputList.forEach((input) => {
+    input.classList.remove("modal__input_invalid");
+  });
+
+  errorList.forEach((error) => {
+    error.textContent = "";
+  });
+}
+
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+
+  resetValidation(editFormElement);
   openModal(editModal);
 });
 
@@ -147,6 +164,7 @@ editModalCloseBtn.addEventListener("click", () => {
 });
 
 cardEditButton.addEventListener("click", () => {
+  resetValidation(cardForm); // Call before opening modal
   openModal(cardModal);
 });
 
