@@ -77,8 +77,8 @@ const resetValidation = (formEl, config) => {
     hideInputError(formEl, input, config);
   });
 
-  errorList.forEach((error) => {
-    error.textContent = "";
-  });
+  // errorList.forEach((error) => {
+  //   error.textContent = "";
+  // });
 };
 enableValidation(settings);
