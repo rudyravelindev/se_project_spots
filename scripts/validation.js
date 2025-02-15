@@ -71,14 +71,8 @@ const enableValidation = (config) => {
 
 const resetValidation = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
-  const errorList = Array.from(formEl.querySelectorAll(".modal__error"));
-
   inputList.forEach((input) => {
     hideInputError(formEl, input, config);
   });
-
-  // errorList.forEach((error) => {
-  //   error.textContent = "";
-  // });
 };
 enableValidation(settings);
