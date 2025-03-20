@@ -1,0 +1,19 @@
+{
+  "name": "se_project_spots",
+  "version": "0.0.1",
+  "description": "Media platform to share images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudyravelindev/se_project_spots.git"
+  },
+  "author": "Rudy Ravelin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudyravelindev/se_project_spots/issues"
+  },
+  "homepage": "https://github.com/rudyravelindev/se_project_spots#readme"
+}

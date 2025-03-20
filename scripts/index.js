@@ -1,3 +1,5 @@
+import { enableValidation, settings, disableButton } from "./validation.js";
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -38,9 +40,8 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
-const cardModal = document.querySelector("#add-card-modal");
 const cardForm = document.forms["add-card-form"];
-
+const cardModal = document.querySelector("#add-card-modal");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
@@ -161,3 +162,5 @@ initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
+//enableValidation(settings);
