@@ -1,4 +1,20 @@
-import { enableValidation, settings, disableButton } from "./validation.js";
+import logo from "../images/logo.svg";
+import avatar from "../images/avatar.jpg";
+import pencil from "../images/pencil.svg";
+import plus from "../images/plus.svg";
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".header__logo").src = logo;
+  document.querySelector(".profile__avatar").src = avatar;
+  document.querySelector(".profile__edit-btn img").src = pencil;
+  document.querySelector(".profile__add-btn img").src = plus;
+});
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  disableButton,
+} from "../scripts/validation.js";
 
 const initialCards = [
   {
@@ -163,4 +179,4 @@ initialCards.forEach((item) => {
   cardsList.append(cardElement);
 });
 
-//enableValidation(settings);
+enableValidation(settings);
