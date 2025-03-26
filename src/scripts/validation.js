@@ -75,5 +75,5 @@ const resetValidation = (formEl, config) => {
     hideInputError(formEl, input, config);
   });
 };
-export { disableButton };
+export { disableButton, resetValidation };
 enableValidation(settings);

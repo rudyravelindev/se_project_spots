@@ -14,6 +14,7 @@ import {
   enableValidation,
   settings,
   disableButton,
+  resetValidation,
 } from "../scripts/validation.js";
 
 import Api from "../utils/Api.js";
@@ -55,14 +56,18 @@ const api = new Api({
 
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([userData, cards]) => {
     console.log(cards);
     cards.forEach((item) => {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
+
+    document.querySelector(".profile__avatar").src = userData.avatar;
+    profileName.textContent = userData.name;
+    profileDescription.textContent = userData.about;
   })
-  .catch(console.error.errorr);
+  .catch(console.error.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
@@ -156,9 +161,17 @@ document.querySelectorAll(".modal").forEach((modal) => {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileName.textContent = data.name;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
