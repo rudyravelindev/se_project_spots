@@ -2,13 +2,16 @@ import logo from "../images/logo.svg";
 import avatar from "../images/avatar.jpg";
 import pencil from "../images/pencil.svg";
 import plus from "../images/plus.svg";
+import pencilEditAvatar from "../images/pencil-edit-avatar.svg";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".header__logo").src = logo;
   document.querySelector(".profile__avatar").src = avatar;
   document.querySelector(".profile__edit-btn img").src = pencil;
   document.querySelector(".profile__add-btn img").src = plus;
+  document.querySelector(".profile__pencil-icon").src = pencilEditAvatar;
 });
+
 import "./index.css";
 import {
   enableValidation,
@@ -67,8 +70,15 @@ api
     profileName.textContent = userData.name;
     profileDescription.textContent = userData.about;
   })
-  .catch(console.error.error);
-
+  .catch(console.error);
+// Edit Avatar
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = document.forms["edit-avatar"];
+const avatarUrlInput = avatarModal.querySelector("#avatar-url-input");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
+// END
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
@@ -132,11 +142,69 @@ function getCardElement(data) {
   return cardElement;
 }
 
+// Open Avatar Modal
+profileAvatarBtn.addEventListener("click", () => {
+  resetValidation(avatarForm, settings);
+  openModal(avatarModal);
+});
+
+// Close Avatar Modal
+avatarModalCloseBtn.addEventListener("click", () => closeModal(avatarModal));
+
+// Avatar Form Submission
+avatarForm.addEventListener("submit", handleAvatarSubmit);
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscapeKey);
 }
 
+// Avatar
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  const submitButton = avatarForm.querySelector(".modal__submit-btn");
+  const avatarImg = document.querySelector(".profile__avatar"); // Move this up
+
+  // Set loading state
+  submitButton.disabled = true;
+  submitButton.classList.add("modal__submit-btn_loading");
+  submitButton.textContent = "Saving...";
+
+  api
+    .updateAvatar({ avatar: avatarUrlInput.value })
+    .then((userData) => {
+      // Add a console.log to verify the data
+      console.log("Avatar update response:", userData);
+
+      avatarImg.src = "";
+      avatarImg.src = `${userData.avatar}?t=${Date.now()}`;
+
+      return new Promise((resolve) => {
+        avatarImg.onload = () => {
+          console.log("Image loaded successfully");
+          resolve();
+        };
+        avatarImg.onerror = () => {
+          console.error("Image failed to load");
+          resolve();
+        };
+        setTimeout(resolve, 2000);
+      });
+    })
+    .then(() => {
+      closeModal(avatarModal);
+      avatarForm.reset();
+    })
+    .catch((err) => {
+      console.error("Avatar update failed:", err);
+      alert("Failed to update avatar. Please try again.");
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      submitButton.classList.remove("modal__submit-btn_loading");
+      submitButton.textContent = "Save";
+    });
+}
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscapeKey);
@@ -169,6 +237,7 @@ function handleEditFormSubmit(evt) {
     })
     .then((data) => {
       profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error);

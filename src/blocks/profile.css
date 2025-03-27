@@ -4,6 +4,41 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
+.profile__avatar-container {
+  position: relative;
+  cursor: pointer;
+  width: 190px; /* Match avatar width */
+  height: 190px; /* Match avatar height */
+}
+
+.profile__avatar-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 33, 33, 0.6);
+  display: flex;
+  flex-direction: row; /* Change from column to row */
+  align-items: flex-end;
+  justify-content: center; /* Keep center if you want them centered horizontally */
+  gap: 6px; /* This gap now creates horizontal space between icon and text */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+
+.profile__avatar-btn:hover {
+  opacity: 1;
+}
+
+.profile__pencil-icon {
+  width: 26px;
+  height: 26px;
+}
+
 .profile__avatar {
   width: 190px;
   height: 190px;
@@ -89,6 +124,9 @@
 .profile__add-btn:hover {
   opacity: 0.8;
 }
+.profile__avatar-text {
+  color: white;
+}
 
 @media screen and (max-width: 627px) {
   .profile {
@@ -103,6 +141,35 @@
     margin: 0 0 12px;
     height: 80px;
     width: 80px;
+  }
+  .profile__avatar-container {
+    width: 80px; /* Match the mobile avatar width */
+    height: 80px; /* Match the mobile avatar height */
+  }
+
+  .profile__avatar-btn {
+    opacity: 1;
+    width: 23px;
+    height: 23px;
+    top: auto;
+    bottom: 8px;
+    right: 8px;
+    left: auto;
+    background: rgba(33, 33, 33, 0.6);
+    padding: 4px; /* Add padding around the pencil icon */
+    border-radius: 20%; /* Make the background circular */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile__pencil-icon {
+    width: 14px; /* Adjust pencil icon size */
+    height: 14px; /* Adjust pencil icon size */
+    opacity: 1; /* Keep the icon fully visible */
+  }
+
+  .profile__avatar-text {
+    display: none;
   }
 
   .profile__edit-btn {

@@ -190,6 +190,11 @@
   }
 }
 
+.modal__submit-btn_loading {
+  opacity: 0.8;
+  cursor: wait;
+}
+
 @media screen and (max-width: 320px) {
   .modal__image {
     width: 288px;
