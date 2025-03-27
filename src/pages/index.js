@@ -3,6 +3,7 @@ import avatar from "../images/avatar.jpg";
 import pencil from "../images/pencil.svg";
 import plus from "../images/plus.svg";
 import pencilEditAvatar from "../images/pencil-edit-avatar.svg";
+import closeIcon from "../images/close-icon-light.svg";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".header__logo").src = logo;
@@ -79,6 +80,34 @@ const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
 // END
+// delete modal confirmation
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const confirmDeleteButton = deleteModal.querySelector(".modal__submit-btn");
+
+deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+confirmDeleteButton.addEventListener("click", () => {
+  const cardId = deleteModal.dataset.cardToDelete.replace("card-", ""); // Remove 'card-' prefix to get actual ID
+
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      // Only remove the card from the page if API deletion was successful
+      const cardToDelete = document.getElementById(
+        deleteModal.dataset.cardToDelete
+      );
+      cardToDelete.remove();
+      closeModal(deleteModal);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+// End
+
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardEditButton = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
@@ -110,33 +139,29 @@ previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
-  const cardNameElement = cardElement.querySelector(".card__title");
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardLikedBtn = cardElement.querySelector(".card__like-btn");
-  const deleteButton = cardElement.querySelector(".card__delete-btn");
+function getCardElement(cardData) {
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  cardImageElement.src = data.link;
-  cardImageElement.alt = data.name;
-  cardNameElement.textContent = data.name;
+  // Add a unique ID to the card
+  cardElement.id = `card-${cardData._id}`; // Using the _id from the card data
 
-  cardLikedBtn.addEventListener("click", () => {
-    cardLikedBtn.classList.toggle("card__like-btn_liked");
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardLikeButton = cardElement.querySelector(".card__like-btn"); // Changed from card__like-button
+  const deleteButton = cardElement.querySelector(".card__delete-btn"); // Changed from card__delete-button
+
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+  cardTitle.textContent = cardData.name;
+
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button_active");
   });
 
   deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImageElement.addEventListener("click", () => {
-    openModal(previewModal);
-
-    previewModalImageElement.src = data.link;
-    previewModalImageElement.alt = data.name;
-    previewModalCaptionElement.textContent = data.name;
+    deleteModal.dataset.cardToDelete = cardElement.id;
+    openModal(deleteModal);
   });
 
   return cardElement;
@@ -245,7 +270,11 @@ function handleEditFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
+  const inputValue = {
+    name: cardNameInput.value,
+    link: cardLinkInput.value,
+    _id: `temp-${Date.now()}`,
+  };
   const cardElement = getCardElement(inputValue);
   cardsList.prepend(cardElement);
 
