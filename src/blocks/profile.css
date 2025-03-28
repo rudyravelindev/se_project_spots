@@ -7,8 +7,8 @@
 .profile__avatar-container {
   position: relative;
   cursor: pointer;
-  width: 190px; /* Match avatar width */
-  height: 190px; /* Match avatar height */
+  width: 190px;
+  height: 190px;
   margin-right: 30px;
 }
 
@@ -20,10 +20,10 @@
   height: 100%;
   background: rgba(33, 33, 33, 0.6);
   display: flex;
-  flex-direction: row; /* Change from column to row */
+  flex-direction: row;
   align-items: flex-end;
-  justify-content: center; /* Keep center if you want them centered horizontally */
-  gap: 6px; /* This gap now creates horizontal space between icon and text */
+  justify-content: center;
+  gap: 6px;
   opacity: 0;
   transition: opacity 0.3s ease;
   border: none;
@@ -144,8 +144,8 @@
     width: 80px;
   }
   .profile__avatar-container {
-    width: 80px; /* Match the mobile avatar width */
-    height: 80px; /* Match the mobile avatar height */
+    width: 80px;
+    height: 80px;
   }
 
   .profile__avatar-btn {
@@ -157,16 +157,16 @@
     right: 8px;
     left: auto;
     background: rgba(33, 33, 33, 0.6);
-    padding: 4px; /* Add padding around the pencil icon */
-    border-radius: 20%; /* Make the background circular */
+    padding: 4px;
+    border-radius: 20%;
     justify-content: center;
     align-items: center;
   }
 
   .profile__pencil-icon {
-    width: 14px; /* Adjust pencil icon size */
-    height: 14px; /* Adjust pencil icon size */
-    opacity: 1; /* Keep the icon fully visible */
+    width: 14px;
+    height: 14px;
+    opacity: 1;
   }
 
   .profile__avatar-text {

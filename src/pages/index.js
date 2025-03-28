@@ -199,7 +199,7 @@ function openModal(modal) {
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   const submitButton = avatarForm.querySelector(".modal__submit-btn");
-  const avatarImg = document.querySelector(".profile__avatar"); // Move this up
+  const avatarImg = document.querySelector(".profile__avatar");
 
   // Set loading state
   submitButton.disabled = true;
@@ -209,9 +209,6 @@ function handleAvatarSubmit(evt) {
   api
     .updateAvatar({ avatar: avatarUrlInput.value })
     .then((userData) => {
-      // Add a console.log to verify the data
-      console.log("Avatar update response:", userData);
-
       avatarImg.src = "";
       avatarImg.src = `${userData.avatar}?t=${Date.now()}`;
 
@@ -336,11 +333,9 @@ function handleLikeClick(cardId, likeButton) {
   // 1. Check if the card is currently liked
   const isLiked = likeButton.classList.contains("card__like-btn_liked");
 
-  // 2. Call the likeStatus method
   api
     .likeStatus(cardId, isLiked)
     .then((updatedCard) => {
-      // 3. Update the UI based on the response
       if (updatedCard.isLiked) {
         likeButton.classList.add("card__like-btn_liked");
       } else {
@@ -349,7 +344,6 @@ function handleLikeClick(cardId, likeButton) {
     })
     .catch((err) => {
       console.error("Error updating like status:", err);
-      // Optional: Show error message to user or revert UI change
     });
 }
 

@@ -200,7 +200,7 @@
   background-color: #212121;
   color: #fff;
 }
-/* Adjust close button position for delete modal */
+
 .modal__close-btn_type_delete {
   position: absolute;
   right: -40px;
@@ -209,36 +209,18 @@
   background-image: url("../images/close-icon-delete-btn.svg");
 }
 
-/* @media screen and (max-width: 627px) {
-  .modal__form_type_delete {
-    display: block;
-    gap: 20px;
-    background-image: url("../images/close-icon-delete-btn.svg");
-  }
-
-  .modal__submit-btn_type_delete,
-  .modal__submit-btn_type_cancel {
-    width: 100%;
-  }
-
-  .modal__close-btn_type_delete {
-    top: -36px;
-    right: 0;
-  }
-} */
-
 @media screen and (max-width: 627px) {
   /* Delete Modal Mobile Styles */
   .modal__form_type_delete {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Space between stacked buttons */
+    gap: 12px;
   }
 
   .modal__submit-btn_type_delete,
   .modal__submit-btn_type_cancel {
     width: 100%;
-    margin: 0; /* Remove any default margins */
+    margin: 0;
   }
 
   .modal__close-btn_type_delete {
@@ -253,9 +235,8 @@
     cursor: pointer;
   }
 
-  /* If you need to adjust the modal container for mobile */
   #delete-modal .modal__container {
-    width: calc(100% - 40px); /* Full width with padding */
+    width: calc(100% - 40px);
     padding: 20px;
   }
 }
