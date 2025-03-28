@@ -9,6 +9,7 @@
   cursor: pointer;
   width: 190px; /* Match avatar width */
   height: 190px; /* Match avatar height */
+  margin-right: 30px;
 }
 
 .profile__avatar-btn {

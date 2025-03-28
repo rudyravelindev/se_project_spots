@@ -266,6 +266,9 @@ document.querySelectorAll(".modal").forEach((modal) => {
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
+  submitButton.textContent = "Saving...";
+  submitButton.disabled = true;
+
   api
     .editUserInfo({
       name: editModalNameInput.value,
