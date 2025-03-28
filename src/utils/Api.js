@@ -8,6 +8,7 @@ class Api {
     // call getUserInfo in this array
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -88,6 +89,17 @@ class Api {
     }
     return Promise.reject(`Error: ${res.status}`);
   }
-}
 
+  likeStatus(id, isLiked) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+}
 export default Api;

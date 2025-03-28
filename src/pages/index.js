@@ -162,17 +162,18 @@ function getCardElement(cardData) {
   cardImage.alt = cardData.name;
   cardTitle.textContent = cardData.name;
 
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-button_active");
-  });
-
-  // deleteButton.addEventListener("click", () => {
-  //   deleteModal.dataset.cardToDelete = cardElement.id;
-  //   openModal(deleteModal);
-  // });
-
   deleteButton.addEventListener("click", () => {
     handleDeleteCard(cardElement, cardData);
+  });
+
+  // Set initial like state
+  if (cardData.isLiked) {
+    cardLikeButton.classList.add("card__like-btn_liked");
+  }
+
+  // Add click event listener for like button
+  cardLikeButton.addEventListener("click", () => {
+    handleLikeClick(cardData._id, cardLikeButton);
   });
   return cardElement;
 }
@@ -327,6 +328,27 @@ function handleDeleteSubmit(evt) {
 }
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+
+function handleLikeClick(cardId, likeButton) {
+  // 1. Check if the card is currently liked
+  const isLiked = likeButton.classList.contains("card__like-btn_liked");
+
+  // 2. Call the likeStatus method
+  api
+    .likeStatus(cardId, isLiked)
+    .then((updatedCard) => {
+      // 3. Update the UI based on the response
+      if (updatedCard.isLiked) {
+        likeButton.classList.add("card__like-btn_liked");
+      } else {
+        likeButton.classList.remove("card__like-btn_liked");
+      }
+    })
+    .catch((err) => {
+      console.error("Error updating like status:", err);
+      // Optional: Show error message to user or revert UI change
+    });
+}
 
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
