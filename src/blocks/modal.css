@@ -203,41 +203,61 @@
 
 .modal__close-btn_type_delete {
   position: absolute;
-  right: -40px;
+  right: -45px;
   top: -10px;
-  background-color: transparent;
+  width: 40px;
+  height: 40px;
   background-image: url("../images/close-icon-delete-btn.svg");
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 2; /* Add this to ensure it's above the modal */
 }
-
 @media screen and (max-width: 627px) {
+  .modal {
+    padding: 0 19px;
+  }
+
   /* Delete Modal Mobile Styles */
+  #delete-modal .modal__container {
+    padding: 25px 22px;
+    width: 100%;
+    max-width: none;
+  }
+
+  #delete-modal .modal__title {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 24px;
+  }
+
   .modal__form_type_delete {
-    display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 0;
   }
 
   .modal__submit-btn_type_delete,
   .modal__submit-btn_type_cancel {
     width: 100%;
     margin: 0;
+    padding: 15px 0;
   }
-
   .modal__close-btn_type_delete {
-    position: absolute;
-    top: -36px;
-    right: 0;
-    width: 28px;
-    height: 28px;
-    background: url("../images/close-icon-delete-btn.svg") center no-repeat;
-    background-size: contain;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url("../images/close-icon-delete-btn.svg");
+    background-color: transparent;
     border: none;
-    cursor: pointer;
-  }
-
-  #delete-modal .modal__container {
-    width: calc(100% - 40px);
-    padding: 20px;
+    padding: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 999;
   }
 }
 
