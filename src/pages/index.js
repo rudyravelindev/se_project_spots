@@ -1,4 +1,5 @@
 import logo from "../images/logo.svg";
+
 import avatar from "../images/avatar.jpg";
 import pencil from "../images/pencil.svg";
 import plus from "../images/plus.svg";
