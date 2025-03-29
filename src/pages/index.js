@@ -271,6 +271,8 @@ document.querySelectorAll(".modal").forEach((modal) => {
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
+  const submitButton = editFormElement.querySelector(".modal__submit-btn"); // Add this line
+
   submitButton.textContent = "Saving...";
   submitButton.disabled = true;
 
@@ -284,7 +286,12 @@ function handleEditFormSubmit(evt) {
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      // Add this block to reset the button
+      submitButton.textContent = "Save";
+      submitButton.disabled = false;
+    });
 }
 
 function handleAddCardSubmit(evt) {
