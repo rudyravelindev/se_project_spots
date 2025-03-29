@@ -220,32 +220,66 @@ function handleAvatarSubmit(evt) {
       avatarImg.src = "";
       avatarImg.src = `${userData.avatar}?t=${Date.now()}`;
 
-      return new Promise((resolve) => {
-        avatarImg.onload = () => {
-          console.log("Image loaded successfully");
-          resolve();
-        };
-        avatarImg.onerror = () => {
-          console.error("Image failed to load");
-          resolve();
-        };
-        setTimeout(resolve, 2000);
-      });
-    })
-    .then(() => {
-      closeModal(avatarModal);
+      // Reset form and close modal
       avatarForm.reset();
+      closeModal(avatarModal);
+
+      // Reset validation state
+      resetValidation(avatarForm, settings);
+
+      // Reset button state
+      submitButton.classList.remove("modal__submit-btn_loading");
+      submitButton.textContent = "Save";
+      disableButton(submitButton, settings);
     })
     .catch((err) => {
       console.error("Avatar update failed:", err);
       alert("Failed to update avatar. Please try again.");
-    })
-    .finally(() => {
-      submitButton.disabled = false;
+
+      // Reset button state but keep current validation
       submitButton.classList.remove("modal__submit-btn_loading");
       submitButton.textContent = "Save";
+      submitButton.disabled = false;
     });
 }
+
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+
+  const submitButton = cardForm.querySelector(".modal__submit-btn");
+
+  // Set loading state
+  submitButton.disabled = true;
+  submitButton.classList.add("modal__submit-btn_loading");
+  submitButton.textContent = "Creating...";
+
+  api
+    .addCard({
+      name: cardNameInput.value,
+      link: cardLinkInput.value,
+    })
+    .then((cardData) => {
+      const cardElement = getCardElement(cardData);
+      cardsList.prepend(cardElement);
+
+      // Reset form and close modal
+      cardForm.reset();
+      closeModal(cardModal);
+
+      // Reset validation state
+      resetValidation(cardForm, settings);
+    })
+    .catch((err) => {
+      console.error("Failed to add card:", err);
+    })
+    .finally(() => {
+      // Reset button state
+      submitButton.classList.remove("modal__submit-btn_loading");
+      submitButton.textContent = "Create";
+      disableButton(submitButton, settings);
+    });
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscapeKey);
@@ -271,10 +305,12 @@ document.querySelectorAll(".modal").forEach((modal) => {
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
-  const submitButton = editFormElement.querySelector(".modal__submit-btn"); // Add this line
+  const submitButton = editFormElement.querySelector(".modal__submit-btn");
 
-  submitButton.textContent = "Saving...";
+  // Set loading state
   submitButton.disabled = true;
+  submitButton.classList.add("modal__submit-btn_loading");
+  submitButton.textContent = "Saving...";
 
   api
     .editUserInfo({
@@ -284,41 +320,26 @@ function handleEditFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
+
+      // Reset form and close modal
+      editFormElement.reset();
       closeModal(editModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      // Add this block to reset the button
+
+      // Reset validation state
+      resetValidation(editFormElement, settings);
+
+      // Reset button state
+      submitButton.classList.remove("modal__submit-btn_loading");
       submitButton.textContent = "Save";
-      submitButton.disabled = false;
-    });
-}
-
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-
-  // Show loading state on the button
-  cardSubmitBtn.textContent = "Saving...";
-  cardSubmitBtn.disabled = true;
-
-  api
-    .addCard({
-      name: cardNameInput.value,
-      link: cardLinkInput.value,
-    })
-    .then((cardData) => {
-      const cardElement = getCardElement(cardData);
-      cardsList.prepend(cardElement);
-      cardForm.reset();
-      disableButton(cardSubmitBtn, settings);
-      closeModal(cardModal);
+      disableButton(submitButton, settings);
     })
     .catch((err) => {
-      console.error("Error adding card:", err);
-    })
-    .finally(() => {
-      cardSubmitBtn.textContent = "Create";
-      cardSubmitBtn.disabled = false;
+      console.error("Profile update failed:", err);
+
+      // Reset button state but keep current validation
+      submitButton.classList.remove("modal__submit-btn_loading");
+      submitButton.textContent = "Save";
+      submitButton.disabled = false;
     });
 }
 
