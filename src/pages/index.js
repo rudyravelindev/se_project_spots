@@ -179,6 +179,14 @@ function getCardElement(cardData) {
     cardLikeButton.classList.add("card__like-btn_liked");
   }
 
+  // Open the card preview
+  cardImage.addEventListener("click", () => {
+    previewModalImageElement.src = cardData.link;
+    previewModalImageElement.alt = cardData.name;
+    previewModalCaptionElement.textContent = cardData.name;
+    openModal(previewModal);
+  });
+
   // Add click event listener for like button
   cardLikeButton.addEventListener("click", () => {
     handleLikeClick(cardData._id, cardLikeButton);
