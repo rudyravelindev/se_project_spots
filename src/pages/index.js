@@ -85,8 +85,15 @@ const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const confirmDeleteButton = deleteModal.querySelector(".modal__submit-btn");
+const cancelDeleteButton = deleteModal.querySelector(
+  ".modal__submit-btn_type_cancel"
+);
 
 deleteModalCloseBtn.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
+
+cancelDeleteButton.addEventListener("click", () => {
   closeModal(deleteModal);
 });
 
