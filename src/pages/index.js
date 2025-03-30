@@ -1,20 +1,14 @@
 import logo from "../images/logo.svg";
-
 import avatar from "../images/avatar.jpg";
 import pencil from "../images/pencil.svg";
 import plus from "../images/plus.svg";
 import pencilEditAvatar from "../images/pencil-edit-avatar.svg";
 import closeIcon from "../images/close-icon-light.svg";
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".header__logo").src = logo;
-  document.querySelector(".profile__avatar").src = avatar;
-  document.querySelector(".profile__edit-btn img").src = pencil;
-  document.querySelector(".profile__add-btn img").src = plus;
-  document.querySelector(".profile__pencil-icon").src = pencilEditAvatar;
-});
-
+// Import CSS
 import "./index.css";
+
+// Import Scripts
 import {
   enableValidation,
   settings,
@@ -22,7 +16,68 @@ import {
   resetValidation,
 } from "../scripts/validation.js";
 
+// Import API
 import Api from "../utils/Api.js";
+
+// Profile Elements
+const profileEditButton = document.querySelector(".profile__edit-btn");
+const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+
+// Card Elements
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
+const cardEditButton = document.querySelector(".profile__add-btn");
+
+// Edit Profile Modal Elements
+const editModal = document.querySelector("#edit-modal");
+const editFormElement = document.forms["modal__form"];
+const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
+const editModalNameInput = editModal.querySelector("#profile-name-input");
+const editModalDescriptionInput = editModal.querySelector(
+  "#profile-description-input"
+);
+
+// Add Card Modal Elements
+const cardModal = document.querySelector("#add-card-modal");
+const cardForm = document.forms["add-card-form"];
+const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+const cardNameInput = cardModal.querySelector("#add-card-name-input");
+const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn_invalid");
+
+// Preview Modal Elements
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImageElement = previewModal.querySelector(".modal__image");
+const previewModalCaptionElement =
+  previewModal.querySelector(".modal__caption");
+const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
+
+// Avatar Modal Elements
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = document.forms["edit-avatar"];
+const avatarUrlInput = avatarModal.querySelector("#avatar-url-input");
+const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+
+// Delete Modal Elements
+const deleteModal = document.querySelector("#delete-modal");
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const confirmDeleteButton = deleteModal.querySelector(".modal__submit-btn");
+const cancelDeleteButton = deleteModal.querySelector(
+  ".modal__submit-btn_type_cancel"
+);
+const deleteForm = document.querySelector("#delete-form");
+
+// DOMContentLoaded event listener
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".header__logo").src = logo;
+  document.querySelector(".profile__avatar").src = avatar;
+  document.querySelector(".profile__edit-btn img").src = pencil;
+  document.querySelector(".profile__add-btn img").src = plus;
+  document.querySelector(".profile__pencil-icon").src = pencilEditAvatar;
+});
 
 const initialCards = [
   {
@@ -73,21 +128,8 @@ api
     profileDescription.textContent = userData.about;
   })
   .catch(console.error);
-// Edit Avatar
-const avatarModal = document.querySelector("#avatar-modal");
-const avatarForm = document.forms["edit-avatar"];
-const avatarUrlInput = avatarModal.querySelector("#avatar-url-input");
-const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
-const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
-const profileAvatarBtn = document.querySelector(".profile__avatar-btn");
-// END
+
 // delete modal confirmation
-const deleteModal = document.querySelector("#delete-modal");
-const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
-const confirmDeleteButton = deleteModal.querySelector(".modal__submit-btn");
-const cancelDeleteButton = deleteModal.querySelector(
-  ".modal__submit-btn_type_cancel"
-);
 
 deleteModalCloseBtn.addEventListener("click", () => {
   closeModal(deleteModal);
@@ -119,40 +161,12 @@ confirmDeleteButton.addEventListener("click", () => {
 });
 // End
 
-const profileEditButton = document.querySelector(".profile__edit-btn");
-const cardEditButton = document.querySelector(".profile__add-btn");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-
-const editModal = document.querySelector("#edit-modal");
-const editFormElement = document.forms["modal__form"];
-const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
-const editModalNameInput = editModal.querySelector("#profile-name-input");
-const editModalDescriptionInput = editModal.querySelector(
-  "#profile-description-input"
-);
-
-const cardForm = document.forms["add-card-form"];
-const cardModal = document.querySelector("#add-card-modal");
-const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
-const cardNameInput = cardModal.querySelector("#add-card-name-input");
-const cardLinkInput = cardModal.querySelector("#add-card-link-input");
-const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn_invalid");
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
-const previewModal = document.querySelector("#preview-modal");
-const previewModalImageElement = previewModal.querySelector(".modal__image");
-const previewModalCaptionElement =
-  previewModal.querySelector(".modal__caption");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
-
 previewModalCloseBtn.addEventListener("click", () => {
   closeModal(previewModal);
 });
 
 let selectedCard;
 let selectedCardId;
-const deleteForm = document.querySelector("#delete-form");
 
 function getCardElement(cardData) {
   const cardTemplate = document.querySelector("#card-template").content;
