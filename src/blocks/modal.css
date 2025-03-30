@@ -213,7 +213,7 @@
   padding: 0;
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 2; /* Add this to ensure it's above the modal */
+  z-index: 12; /* Add this to ensure it's above the modal */
 }
 @media screen and (max-width: 627px) {
   .modal {
@@ -244,20 +244,6 @@
     width: 100%;
     margin: 0;
     padding: 15px 0;
-  }
-  .modal__close-btn_type_delete {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background-image: url("../images/close-icon-delete-btn.svg");
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 999;
   }
 }
 
@@ -315,5 +301,12 @@
     right: 10px;
     width: 30px;
     height: 30px;
+  }
+
+  .modal__close-btn_type_delete {
+    right: 0;
+    top: -45px;
+    width: 40px;
+    height: 40px;
   }
 }
