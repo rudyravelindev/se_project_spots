@@ -230,12 +230,12 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscapeKey);
 }
-
-// Avatar
+// Handle avatar update submission
+// Avatar submission handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  const submitButton = avatarForm.querySelector(".modal__submit-btn"); // Correct class name
-  const avatarImg = document.querySelector(".profile__avatar"); // Correct class name
+  const submitButton = avatarForm.querySelector(".modal__submit-btn");
+  const avatarImg = document.querySelector(".profile__avatar");
 
   setSubmitButtonState(submitButton, true, "Saving...", "Save");
 
@@ -246,6 +246,7 @@ function handleAvatarSubmit(evt) {
       avatarForm.reset();
       closeModal(avatarModal);
       resetValidation(avatarForm, settings);
+      // Disable the button after successful submission
       disableButton(submitButton, settings);
     })
     .catch((err) => {
@@ -254,6 +255,7 @@ function handleAvatarSubmit(evt) {
     })
     .finally(() => {
       setSubmitButtonState(submitButton, false, "Saving...", "Save");
+      // Make sure the button stays disabled even after the loading state is removed
       disableButton(submitButton, settings);
     });
 }
@@ -275,6 +277,7 @@ function handleAddCardSubmit(evt) {
       cardForm.reset();
       closeModal(cardModal);
       resetValidation(cardForm, settings);
+      // Disable the button after successful submission
       disableButton(submitButton, settings);
     })
     .catch((err) => {
@@ -335,7 +338,6 @@ function handleEditFormSubmit(evt) {
     })
     .finally(() => {
       setSubmitButtonState(submitButton, false, "Saving...", "Save");
-      // Make sure the button stays disabled after the loading state is removed
       disableButton(submitButton, settings);
     });
 }
@@ -345,9 +347,10 @@ function handleDeleteCard(cardElement, data) {
   selectedCardId = data._id;
   openModal(deleteModal);
 }
-
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+
+  setSubmitButtonState(confirmDeleteButton, true, "Deleting...", "Delete");
 
   api
     .deleteCard(selectedCardId)
@@ -357,7 +360,12 @@ function handleDeleteSubmit(evt) {
       selectedCard = null;
       selectedCardId = null;
     })
-    .catch(console.error);
+    .catch((err) => {
+      console.error("Error deleting card:", err);
+    })
+    .finally(() => {
+      setSubmitButtonState(confirmDeleteButton, false, "Delete", "Delete");
+    });
 }
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
