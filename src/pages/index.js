@@ -168,6 +168,12 @@ previewModalCloseBtn.addEventListener("click", () => {
 let selectedCard;
 let selectedCardId;
 
+function setSubmitButtonState(button, isLoading, loadingText, defaultText) {
+  button.disabled = isLoading;
+  button.classList.toggle("modal__submit-btn_loading", isLoading);
+  button.textContent = isLoading ? loadingText : defaultText;
+}
+
 function getCardElement(cardData) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -228,52 +234,35 @@ function openModal(modal) {
 // Avatar
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  const submitButton = avatarForm.querySelector(".modal__submit-btn");
-  const avatarImg = document.querySelector(".profile__avatar");
+  const submitButton = avatarForm.querySelector(".modal__submit-btn"); // Correct class name
+  const avatarImg = document.querySelector(".profile__avatar"); // Correct class name
 
-  // Set loading state
-  submitButton.disabled = true;
-  submitButton.classList.add("modal__submit-btn_loading");
-  submitButton.textContent = "Saving...";
+  setSubmitButtonState(submitButton, true, "Saving...", "Save");
 
   api
     .updateAvatar({ avatar: avatarUrlInput.value })
     .then((userData) => {
-      avatarImg.src = "";
       avatarImg.src = `${userData.avatar}?t=${Date.now()}`;
-
-      // Reset form and close modal
       avatarForm.reset();
       closeModal(avatarModal);
-
-      // Reset validation state
       resetValidation(avatarForm, settings);
-
-      // Reset button state
-      submitButton.classList.remove("modal__submit-btn_loading");
-      submitButton.textContent = "Save";
       disableButton(submitButton, settings);
     })
     .catch((err) => {
       console.error("Avatar update failed:", err);
       alert("Failed to update avatar. Please try again.");
-
-      // Reset button state but keep current validation
-      submitButton.classList.remove("modal__submit-btn_loading");
-      submitButton.textContent = "Save";
-      submitButton.disabled = false;
+    })
+    .finally(() => {
+      setSubmitButtonState(submitButton, false, "Saving...", "Save");
+      disableButton(submitButton, settings);
     });
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-
   const submitButton = cardForm.querySelector(".modal__submit-btn");
 
-  // Set loading state
-  submitButton.disabled = true;
-  submitButton.classList.add("modal__submit-btn_loading");
-  submitButton.textContent = "Creating...";
+  setSubmitButtonState(submitButton, true, "Creating...", "Create");
 
   api
     .addCard({
@@ -283,21 +272,17 @@ function handleAddCardSubmit(evt) {
     .then((cardData) => {
       const cardElement = getCardElement(cardData);
       cardsList.prepend(cardElement);
-
-      // Reset form and close modal
       cardForm.reset();
       closeModal(cardModal);
-
-      // Reset validation state
       resetValidation(cardForm, settings);
+      disableButton(submitButton, settings);
     })
     .catch((err) => {
       console.error("Failed to add card:", err);
+      alert("Failed to add card. Please try again.");
     })
     .finally(() => {
-      // Reset button state
-      submitButton.classList.remove("modal__submit-btn_loading");
-      submitButton.textContent = "Create";
+      setSubmitButtonState(submitButton, false, "Creating...", "Create");
       disableButton(submitButton, settings);
     });
 }
@@ -326,13 +311,9 @@ document.querySelectorAll(".modal").forEach((modal) => {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-
   const submitButton = editFormElement.querySelector(".modal__submit-btn");
 
-  // Set loading state
-  submitButton.disabled = true;
-  submitButton.classList.add("modal__submit-btn_loading");
-  submitButton.textContent = "Saving...";
+  setSubmitButtonState(submitButton, true, "Saving...", "Save");
 
   api
     .editUserInfo({
@@ -342,26 +323,20 @@ function handleEditFormSubmit(evt) {
     .then((data) => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
-
-      // Reset form and close modal
       editFormElement.reset();
       closeModal(editModal);
-
-      // Reset validation state
       resetValidation(editFormElement, settings);
-
-      // Reset button state
-      submitButton.classList.remove("modal__submit-btn_loading");
-      submitButton.textContent = "Save";
+      // Disable the button after successful submission
       disableButton(submitButton, settings);
     })
     .catch((err) => {
       console.error("Profile update failed:", err);
-
-      // Reset button state but keep current validation
-      submitButton.classList.remove("modal__submit-btn_loading");
-      submitButton.textContent = "Save";
-      submitButton.disabled = false;
+      alert("Failed to update profile. Please try again.");
+    })
+    .finally(() => {
+      setSubmitButtonState(submitButton, false, "Saving...", "Save");
+      // Make sure the button stays disabled after the loading state is removed
+      disableButton(submitButton, settings);
     });
 }
 
