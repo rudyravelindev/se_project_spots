@@ -12,6 +12,7 @@ This project is a social media paltform to share your iamges with the wolrd and 
 - CSS for styling
 - GIT for version control
 - GITHUB PAGES for hosting
+- JavaScript for
 
 ## Figma
 
