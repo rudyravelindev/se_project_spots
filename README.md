@@ -37,5 +37,8 @@ Click here to see the project live: [Spots](https://rudyravelindev.github.io/se_
 ## Video
 
 - Click here to see my presentation video about the project.
+- Firts Video uncomplete project
+  [Video_Link](https://drive.google.com/file/d/1BtQdWITDGkTGENSUgWRvEZanAkJeVoeY/view?usp=drive_link)
 
-[Video_Link](https://drive.google.com/file/d/1BtQdWITDGkTGENSUgWRvEZanAkJeVoeY/view?usp=drive_link)
+- Complete project video
+  [Video_Link](https://www.loom.com/share/b86a30a270284bd59fd3818f737a6532)
