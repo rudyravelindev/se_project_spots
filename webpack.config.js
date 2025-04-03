@@ -1,3 +1,5 @@
+const se_project_spots = require("./package.json").name;
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -10,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "/se_project_spots",
+    publicPath: `/${se_project_spots}/`,
   },
 
   mode: "development",
