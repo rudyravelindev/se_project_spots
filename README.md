@@ -22,11 +22,11 @@ This project is a social media paltform to share your iamges with the wolrd and 
 
 #### Large screen
 
-![getting Started](../se_project_spots/src/images/large-view.png)
+![getting Started](../images/large-view.png)
 
 #### Mobile view
 
-![getting Started](../se_project_spots/src/images/mobile-view.png)
+![getting Started](../images/mobile-view.png)
 
 ## Deployment
 
